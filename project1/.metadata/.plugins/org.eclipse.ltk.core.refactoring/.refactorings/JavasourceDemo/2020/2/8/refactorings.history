@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;ReplaceChords.java&apos; to &apos;JavasourceDemo/src/readFromInternet&apos;&#x0D;&#x0A;- Original project: &apos;JavasourceDemo&apos;&#x0D;&#x0A;- Destination element: &apos;JavasourceDemo/src/readFromInternet&apos;&#x0D;&#x0A;- Original element: &apos;lyrics.ReplaceChords.java&apos;" description="Copy compilation unit" destination="/src&lt;readFromInternet" element1="/src&lt;lyrics{ReplaceChords.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1582168617552" units="1" version="1.0"/>
+</session>

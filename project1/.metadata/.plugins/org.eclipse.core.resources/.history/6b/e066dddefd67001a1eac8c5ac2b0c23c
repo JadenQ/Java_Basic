@@ -1,0 +1,5 @@
+package booksystem.exceptions;
+
+public class NoPermissionException extends RuntimeException{
+	
+}

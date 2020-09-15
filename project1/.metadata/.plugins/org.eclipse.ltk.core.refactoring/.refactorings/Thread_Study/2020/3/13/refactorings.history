@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;Thread_Study&apos;&#x0D;&#x0A;- Original project: &apos;Thread_Study&apos;&#x0D;&#x0A;- Original element: &apos;Thread_Study/src/com.sxt.thread&apos;" description="Delete element" element1="/src&lt;com.sxt.thread" element2="/src&lt;com.sxt" element3="/src&lt;com" elements="3" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1584841547927" subPackages="false" version="1.0"/>
+</session>

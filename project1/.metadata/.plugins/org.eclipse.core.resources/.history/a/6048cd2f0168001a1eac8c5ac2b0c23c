@@ -1,0 +1,19 @@
+package booksystem.view;
+
+public class BookView {
+	
+	/**
+	 * 显示欢迎界面
+	 */
+	public void showWelcome() {
+		System.out.println("*****欢迎使用J图书管理系统******");
+	}
+	
+	//主菜单
+	public void showMainView_Admin() {
+	
+	}
+	public void showMainView_Op() {
+		
+	}
+}

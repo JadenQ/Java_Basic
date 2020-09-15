@@ -1,0 +1,5 @@
+package booksystem.biz.implement;
+
+public class UserBizImp1 implements UserBiz{
+	
+}

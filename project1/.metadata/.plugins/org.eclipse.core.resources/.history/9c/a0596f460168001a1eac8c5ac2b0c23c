@@ -1,0 +1,20 @@
+package booksystem.view;
+
+public class BookView {
+	
+	/**
+	 * 显示欢迎界面
+	 */
+	public void showWelcome() {
+		System.out.println("*****欢迎使用J图书管理系统******");
+		System.out.println("\t\t\t1.登录系统\t2.注册\t3.退出系统\t");
+	}
+	
+	//主菜单
+	public void showMainView_Admin() {
+	
+	}
+	public void showMainView_Op() {
+		
+	}
+}

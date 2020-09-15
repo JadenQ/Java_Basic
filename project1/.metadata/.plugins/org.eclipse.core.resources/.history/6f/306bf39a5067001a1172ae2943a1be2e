@@ -1,0 +1,111 @@
+package booksystem.biz.implement;
+
+import java.util.Map;
+
+import booksystem.biz.BookInfoBiz;
+import booksystem.entity.BookInfo;
+import booksystem.util.FileUtil;
+
+/**
+ * bookinfo的第一版实现类
+ * @todo TODO
+ * @author Jaden
+ * @date 2020年3月15日,上午11:22:15
+ * @copyright Jaden
+ */
+public class BookInfoBizImp1 implements BookInfoBiz{
+
+private static final long serialVersionUID = 4451118703247028605L;
+
+	@Override
+	public boolean add(BookInfo bookInfo) {
+		// 1.获得所有的bookInfoMap
+		// 2.向map中添加传入的bookinfo对象
+		// 3.将Map对象重新写回文件
+		if(null == bookInfo) return false;
+	//	Map<String, BookInfo> bookInfoMap = FileUtil.ReadBookInfoMap();
+		Map<String, BookInfo> bookInfoMap = findAll();
+		if(null == bookInfoMap) return false;
+		if(bookInfoMap.containsKey(bookInfo.getIsbn())) { //map中已经存在
+			return false;
+		}
+		bookInfoMap.put(bookInfo.getIsbn(),bookInfo);
+		FileUtil.SaveBookInfoMap(bookInfoMap);
+		return true;
+	}
+
+	@Override
+	public boolean del(BookInfo bookInfo) {
+		if(null == bookInfo) return false;
+	//	Map<String, BookInfo> bookInfoMap = FileUtil.ReadBookInfoMap();
+		Map<String, BookInfo> bookInfoMap = findAll();
+		if(null == bookInfoMap) return false;
+		if(!bookInfoMap.containsKey(bookInfo.getIsbn())) { //map中已经存在
+			return false;
+		}
+		bookInfoMap.remove(bookInfo.getIsbn());
+		FileUtil.SaveBookInfoMap(bookInfoMap); // 删除后写入文件
+		return false;
+	}
+
+	@Override
+	public BookInfo update(BookInfo bookInfo) {
+		if(null == bookInfo) return null;
+		Map<String, BookInfo> bookInfoMap = findAll();
+		if(null == bookInfoMap) return null;
+		if(!bookInfoMap.containsKey(bookInfo.getIsbn())) { //map中已经存在
+			return null;
+		}
+		bookInfoMap.put(bookInfo.getIsbn(),bookInfo);
+		FileUtil.SaveBookInfoMap(bookInfoMap);
+		return bookInfo;
+	}
+	
+	@Override
+	public BookInfo findByIsbn(String isbn) {
+		if(null == isbn || "".equals(isbn)) return null; //如果没有输入
+		Map<String,BookInfo> bookInfoMap = findAll();
+		if(null == bookInfoMap) return null;
+		if(!bookInfoMap.containsKey(isbn)) return null;
+		return bookInfoMap.get(isbn);
+	}
+
+	@Override
+	public BookInfo findByID(String ID) {
+		//一个方法在子类中没有意义，手动抛出异常
+		throw new UnsupportedOperationException("bookinfoBiz中不支持根据ID进行操作，请调用FINDbYisbn");
+		
+	}
+
+	@Override
+	public Map<String, BookInfo> findAll() {
+		return FileUtil.ReadBookInfoMap();
+	}
+
+	@Override
+	public boolean outStore(String isbn, int outCount) {
+		//取出要出库的书籍信息
+		BookInfo bookInfo = findByIsbn(isbn);
+		if(null == bookInfo) return false;
+		//获得文件中所有的书籍信息
+		Map<String,BookInfo> bookInfoMap = findAll();
+		if(null == bookInfoMap) return false;
+		//出不能大于入
+		if(outCount > bookInfo.getInStoreCount()) {
+			return false;
+		}
+		
+		//实现出库操作
+		bookInfo.setInStoreCount(bookInfo.getInStoreCount() - outCount);
+		return true;
+	}
+
+	@Override
+	public boolean inStore(String isbn, int inCount) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
+}

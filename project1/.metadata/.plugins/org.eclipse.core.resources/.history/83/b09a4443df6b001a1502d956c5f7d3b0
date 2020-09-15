@@ -1,0 +1,26 @@
+package com.jaden.thread;
+
+/**
+ * 创建线程方式1：
+ * 继承thread，重写run
+ * @todo TODO
+ * @author Jaden
+ * @date 2020年3月22日,上午9:46:18
+ * @copyright Jaden
+ */
+public class StartThread extends Thread{
+
+	@Override
+	public void run() {
+		for(int i = 0; i < 20; i++) {
+			System.out.println("一边听歌");
+		}
+	}
+	
+	public static void main(String[] args) {
+		//启动
+		
+
+	}
+
+}

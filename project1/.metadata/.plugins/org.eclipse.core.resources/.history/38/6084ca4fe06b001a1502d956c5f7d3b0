@@ -1,0 +1,33 @@
+package com.jaden.thread;
+
+/**
+ * 创建线程方式1：
+ * 1.继承thread，重写run
+ * 2.创建子类对象
+ * @todo TODO
+ * @author Jaden
+ * @date 2020年3月22日,上午9:46:18
+ * @copyright Jaden
+ */
+public class StartThread extends Thread{
+
+	@Override
+	public void run() {
+		for(int i = 0; i < 20; i++) {
+			System.out.println("一边听歌");
+		}
+	}
+	
+	public static void main(String[] args) {
+		//创建子类对象
+		StartThread st = new StartThread();
+		//启动
+		//st.start(); //main方法和start的线程同时进行了 JNI技术
+		st.run(); //run方法，则先进行该线程
+		for(int i = 0; i < 20; i++) {
+			System.out.println("一边coding");
+		}
+
+	}
+
+}

@@ -1,0 +1,5 @@
+package booksystem.biz;
+
+public interface UserBiz {
+
+}

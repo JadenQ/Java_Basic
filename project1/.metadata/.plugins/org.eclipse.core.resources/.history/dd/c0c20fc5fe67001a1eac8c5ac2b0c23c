@@ -1,0 +1,5 @@
+#key = value
+#administrator = bookinfobiz.add, bookinfobiz.findall, bookinfobiz.findbyisbn,bookinfobiz.instore,bookinfobiz.outstore
+administrator = bookinfobiz.*, userbiz.*
+operator = userbiz.*
+default = userbiz.*

@@ -1,0 +1,23 @@
+package booksystem.auth;
+
+import java.io.Serializable;
+import java.util.List;
+
+import booksystem.biz.BookInfoBiz;
+
+/**
+ * 角色类
+ * @todo TODO
+ * @author Jaden
+ * @date 2020年3月17日,上午8:49:53
+ * @copyright Jaden
+ */
+public class Role implements Serializable{
+	
+	private String name;  //角色名称，显示给系统用户看的
+	private String key;  //对应权限配置文件中的权限key，修改配置文件也可以修改用户的权限
+	private List<String> permissions; //权限集合，保存在配置文件当中
+	private BookInfoBiz bookInfoBiz;
+	
+	
+}

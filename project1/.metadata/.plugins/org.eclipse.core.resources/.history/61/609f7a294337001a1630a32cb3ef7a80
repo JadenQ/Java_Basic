@@ -1,0 +1,70 @@
+package fileDemos;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+
+/**
+ * 演示file类的常用方法
+ * @todo TODO
+ * @author Jaden
+ * @date 2020年1月14日,上午10:31:13
+ * @copyright Jaden
+ */
+public class FileDemo1 {
+	
+	//变量用来存储路径，操作文件路径常量
+	private static final String FilePath = "src/fileDemos/test.java";
+	
+	public static void main(String[] args) {
+		//"."表示：当前工程所在的根目录
+		File file = new File(FilePath);
+		System.out.println("文件/文件夹是否存在"+file.exists());
+		System.out.println("是否为一个文件："+file.isFile());
+		System.out.println("是否为一个文件夹："+file.isDirectory());
+		System.out.println("文件名/目录名："+file.getName());
+		System.out.println("绝对路径："+file.getAbsolutePath());
+		System.out.println("相对路径："+file.getPath());
+		System.out.println("最后修改时间："+new Date(file.lastModified()));
+		System.out.println("是否隐藏："+file.isHidden());
+		System.out.println("是否可读："+file.canRead());
+		System.out.println("是否可写："+file.canWrite());
+		System.out.println("所占空间"+file.length());
+		//使用file类创建文件
+		if(!file.exists()) {
+			try {
+				if(file.createNewFile()) {
+					
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			System.out.println("文件/文件夹创建成功！");
+		}
+		
+		//file类创建文件夹
+		if(!file.exists()) {
+				file.mkdir();
+				//mkdirs()
+				System.out.println("成功创建文件夹");
+			}
+			
+			System.out.println("文件/文件夹创建成功！");
+		
+		//file类删除文件
+		if(file.exists() && file.isFile()) {
+			file.delete(); // 立即删除文件/目录
+			//file.deleteOnExit(); // 在进程结束之后将文件删除
+			System.out.println("删除成功！");
+		}
+		
+		//列出当前目录下所有文件对象/文件名
+		String[] fileNames = file.list();
+		for(int i = 0;i < fileNames.length; i++) {
+			System.out.println(fileNames[i]);
+		}
+	}
+		
+}
+

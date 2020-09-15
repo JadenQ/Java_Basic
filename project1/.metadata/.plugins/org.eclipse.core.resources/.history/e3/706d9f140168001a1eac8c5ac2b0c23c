@@ -1,0 +1,9 @@
+package booksystem.view;
+
+public class BookView {
+	
+	//1.Ö÷²Ëµ¥
+	public void showMainView_Admin() {
+		
+	}
+}

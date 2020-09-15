@@ -1,0 +1,7 @@
+package booksystem.biz;
+
+import booksystem.entity.User;
+
+public interface UserBiz extends Biz<User>{
+	public boolean login(User user);
+}

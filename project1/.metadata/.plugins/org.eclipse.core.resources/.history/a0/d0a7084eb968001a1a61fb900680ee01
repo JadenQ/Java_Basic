@@ -1,0 +1,5 @@
+package booksystem.entity;
+
+public class User {
+
+}

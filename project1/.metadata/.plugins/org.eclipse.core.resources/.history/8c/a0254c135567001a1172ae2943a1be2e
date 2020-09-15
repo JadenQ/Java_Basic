@@ -1,0 +1,70 @@
+package booksystem.test;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import booksystem.biz.BookInfoBiz;
+import booksystem.biz.implement.BookInfoBizImp1;
+import booksystem.entity.Book;
+import booksystem.entity.BookInfo;
+import booksystem.util.FileUtil;
+
+public class BookTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//测试图书实体类定义();
+		//测试图书业务类();
+		测试图书的出库和入库();
+	}
+	
+	public static void 测试图书业务类() {
+		BookInfoBiz bookInfoBiz = new BookInfoBizImp1();
+		bookInfoBiz.findByID("abd");
+	}
+	
+	public static void 测试图书实体类定义(){
+		BookInfo bookInfo = new BookInfo();
+		bookInfo.setIsbn("242-463");
+		bookInfo.setName("三生三世");
+		
+		Book book = new Book();
+		book.setIsbn("242-463"); // 扫描isbn进入
+		//添加这本书
+		bookInfo.addBook(book);
+		
+		//写入
+		Map<String, BookInfo> infoMap = new HashMap<>();
+		infoMap.put(bookInfo.getIsbn(),bookInfo); //数据放入map
+		FileUtil.SaveBookInfoMap(infoMap);
+		System.out.println(book.getBookInfo().getName());
+		//读出
+		infoMap = FileUtil.ReadBookInfoMap();
+		System.out.println("从文件中读取出的图书信息");
+		for(String isbn : infoMap.keySet()) {
+			System.out.println(isbn);
+		}
+	}
+	
+	public static void 测试图书的出库和入库() {
+		BookInfoBiz bookInfoBiz = new BookInfoBizImp1();
+		
+		//随机先添加5本书
+		BookInfo bookInfo = new BookInfo();
+		bookInfo.setIsbn("123-456");
+		bookInfo.setName("三生三世");
+		for(int i = 0; i < 5; i++) {
+			Book book = new Book();
+			book.setBookID((i+1)+"");
+			book.setIsbn("123-456");
+			bookInfo.addBook(book); //将当前这本书添加到书籍信息
+		}
+		Map<String, BookInfo> infoMap = new HashMap<>();
+		//向集合中添加一种书籍
+		infoMap.put(bookInfo.getIsbn(), bookInfo);
+		//将图书信息集合写入文件
+		FileUtil.SaveBookInfoMap(infoMap);
+		
+	}
+
+}

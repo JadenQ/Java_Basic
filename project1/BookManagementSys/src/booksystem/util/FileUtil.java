@@ -1,0 +1,95 @@
+package booksystem.util;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.Map;
+import java.util.Set;
+
+import booksystem.entity.BookInfo;
+import booksystem.entity.User;
+
+/**
+ * 文件工具类
+ * 而修改文件，使用的是randomAccessFile。
+ * 本程序只使用IO流
+ * @todo TODO
+ * @author Jaden
+ * @date 2020年3月13日,上午10:28:00
+ * @copyright Jaden
+ */
+public class FileUtil {
+	private static final String BookInfoFilePath = "BookInfoList.dat"; //相对本程序的工程根目录
+	
+	
+	//保存user的信息
+	public static final String UserInfoFilePath = "UserInfo.dat";
+	
+	
+	//	本程序中，为了操作方便，把图书信息以对象流的方式放在文件中
+	// 应当实现在数据库中
+	//bookinfo可以使用set（不重复）或者map（键值对）的方法储存
+	/**
+	 * 将传入的bookinfo的map信息存放在对应的文件中
+	 * @param bookInfoMap
+	 */
+	public static void SaveBookInfoMap(Map<String,BookInfo> bookInfoMap) {
+		SaveObject(bookInfoMap, BookInfoFilePath);
+	}
+	@SuppressWarnings("unchecked")
+	public static Map<String, BookInfo> ReadBookInfoMap(){
+		Object obj = ReadObject(BookInfoFilePath);
+		if(null == obj) return null;
+		return (Map<String,BookInfo>)obj;
+	}
+	
+	/**
+	 * 通用的保存对象的方法
+	 * @param obj 要写入的序列化对象
+	 * @param filePath 文件路径
+	 */
+	public static void SaveObject(Object obj, String filePath) {
+		try(
+			FileOutputStream fout = new FileOutputStream(filePath, false); // 不追加
+			ObjectOutputStream out = new ObjectOutputStream(fout);
+			)
+		{
+			out.writeObject(obj);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 文件中读取对象方法
+	 * @param filePath
+	 * @return
+	 */
+	public static Object ReadObject(String filePath) {
+		try(
+			FileInputStream fin = new FileInputStream(filePath);
+			ObjectInputStream in = new ObjectInputStream(fin);
+				)
+		{
+			return in.readObject();
+		} catch (Exception e) {  //IOException, classnotFound
+			// TODO: handle exception
+		}
+		return null;
+	}
+	
+	/**
+	 * 将传入的用户user信息写入到文件中去
+	 * @param userSet
+	 */
+	public static void SaveUser(Set<User> userSet) {
+		SaveObject(userSet,UserInfoFilePath);
+	}
+	
+	public static Set<User> ReadUser(){
+		return (Set<User>)ReadObject(UserInfoFilePath);
+	}
+	
+	
+	
+}
